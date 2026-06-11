@@ -14,7 +14,7 @@ Marketing science represents causal inference, Bayesian modeling, and business s
 
 ## Projects
 
-### 1. `mmm-bayesian` — Bayesian Marketing Mix Modeling
+### 1. `mmm-bayesian` Bayesian Marketing Mix Modeling
 > *Which channels are actually driving revenue, and how should we reallocate budget?*
 
 Bayesian MMM built in PyMC with adstock decay and saturation curves across five marketing channels (paid search, social, email, display, TV). Outputs channel ROI with full posterior uncertainty and a budget reallocation optimizer.
@@ -25,7 +25,7 @@ Bayesian MMM built in PyMC with adstock decay and saturation curves across five 
 
 ---
 
-### 2. `geo-incrementality` — Geo-Based Incrementality Testing
+### 2. `geo-incrementality` Geo-Based Incrementality Testing
 > *Did this promotion actually cause a sales lift, or would those customers have bought anyway?*
 
 Simulates a regional promotional campaign across synthetic DMAs. Applies synthetic control and difference-in-differences to estimate true incremental lift, then compares against a naive pre/post estimate to show the bias without a proper counterfactual.
@@ -36,7 +36,7 @@ Simulates a regional promotional campaign across synthetic DMAs. Applies synthet
 
 ---
 
-### 3. `clv-hierarchical` — Customer Lifetime Value with Hierarchical Bayes
+### 3. `clv-hierarchical` Customer Lifetime Value with Hierarchical Bayes
 > *Which customers are worth investing in long-term, and how much should we spend to acquire or retain them?*
 
 BG/NBD model for purchase frequency and Gamma-Gamma model for spend, fit on synthetic retail transaction data with realistic patterns: seasonal buyers, one-time purchasers, high-frequency loyalists. Outputs 12-month CLV distributions by customer segment with uncertainty intervals.
@@ -47,7 +47,7 @@ BG/NBD model for purchase frequency and Gamma-Gamma model for spend, fit on synt
 
 ---
 
-### 4. `uplift-promotions` — Dual Uplift Modeling for Promotional Targeting
+### 4. `uplift-promotions` Dual Uplift Modeling for Promotional Targeting
 > *Who should we send this offer to, and who are we just training to wait for discounts?*
 
 Synthetic dataset of customers offered a promotional discount vs. control. Builds a two-model uplift approach alongside a causal forest via EconML. Segments customers into the four classic quadrants: persuadables, sure things, lost causes, sleeping dogs. Outputs a targeting policy with estimated net revenue lift vs. blanket promotion.
@@ -58,7 +58,7 @@ Synthetic dataset of customers offered a promotional discount vs. control. Build
 
 ---
 
-### 5. `price-elasticity` — Hierarchical Bayesian Price Elasticity Modeling
+### 5. `price-elasticity` Hierarchical Bayesian Price Elasticity Modeling
 > *If we raise the price of this product, what actually happens to demand and total revenue?*
 
 Synthetic SKU-level weekly price and sales data across product categories with realistic cross-price effects and seasonal demand patterns. Fits a hierarchical Bayesian model where elasticity varies by category, season, and price tier. Includes a revenue simulator for "what if we raise price X% on category Y" scenarios.
@@ -69,7 +69,7 @@ Synthetic SKU-level weekly price and sales data across product categories with r
 
 ---
 
-### 6. `segmentation-propensity` — Customer Segmentation & Purchase Propensity
+### 6. `segmentation-propensity` Customer Segmentation & Purchase Propensity
 > *Who is likely to buy soon, and how do we prioritize outreach across a large customer base?*
 
 Synthetic CRM dataset with purchase history, loyalty tier, channel engagement, and recency signals. RFM-based segmentation combined with a hierarchical propensity model for likelihood to purchase in the next 30 days. Thin-data customers borrow strength from similar segments via partial pooling.
@@ -80,7 +80,7 @@ Synthetic CRM dataset with purchase history, loyalty tier, channel engagement, a
 
 ---
 
-### 7. `mta-attribution` — Multi-Touch Attribution
+### 7. `mta-attribution` Multi-Touch Attribution
 > *Which touchpoints in the customer journey deserve credit for the conversion?*
 
 Synthetic customer journey data with sequences of marketing touchpoints leading to purchase or no purchase. Builds Markov chain attribution and Shapley value attribution, compares both against last-touch as the naive baseline. Shows how budget decisions change under each model.
@@ -91,7 +91,7 @@ Synthetic customer journey data with sequences of marketing touchpoints leading 
 
 ---
 
-### 8. `promo-cannibalization` — Promotion Cannibalization & Halo Effects
+### 8. `promo-cannibalization` Promotion Cannibalization & Halo Effects
 > *When we discount one product, does it lift the whole category or just steal sales from adjacent SKUs?*
 
 Synthetic transaction data across a product category during a promotional event. Models cross-SKU and cross-category effects to estimate net category lift, cannibalization rate, and halo lift on adjacent products. Often the story is more nuanced than the headline promo lift number.
@@ -102,7 +102,7 @@ Synthetic transaction data across a product category during a promotional event.
 
 ---
 
-### 9. `demand-forecasting` — Hierarchical Demand Forecasting
+### 9. `demand-forecasting` Hierarchical Demand Forecasting
 > *How many units will we sell next week, and how uncertain should we be about that?*
 
 Synthetic SKU-store-week sales data with realistic seasonality, trend, promotional spikes, and stockout patterns. Fits a hierarchical time series model so low-volume SKUs borrow signal from category-level trends. Outputs probabilistic forecasts with credible intervals rather than point estimates.
@@ -113,10 +113,10 @@ Synthetic SKU-store-week sales data with realistic seasonality, trend, promotion
 
 ---
 
-### 10. `ab-testing-framework` — Experimentation Framework & Best Practices
+### 10. `ab-testing-framework` Experimentation Framework & Best Practices
 > *Did this change we made actually work, and how do we know we're not fooling ourselves?*
 
-A reusable experimentation framework covering the full lifecycle: power calculation, randomization, sequential monitoring, and results readout. Includes a "bad experiments museum" — deliberately broken tests (underpowered, peeked at early, wrong randomization unit) with annotated diagnoses.
+A reusable experimentation framework covering the full lifecycle: power calculation, randomization, sequential monitoring, and results readout. Includes a "bad experiments museum", deliberately broken tests (underpowered, peeked at early, wrong randomization unit) with annotated diagnoses.
 
 **Methods:** Power analysis · t-test · Mann-Whitney · Bayesian A/B · sequential testing · CUPED · multiple comparisons correction
 
@@ -160,6 +160,6 @@ Each project folder contains its own README with the business question, modeling
 
 ## About
 
-Built by Justin — data scientist with 10+ years across retail, supply chain, marketing analytics, finance, and SaaS. Focused on Bayesian inference, causal inference, and building models that inform real decisions.
+Built by Justin, data scientist with 10+ years across retail, supply chain, marketing analytics, finance, and SaaS. Focused on Bayesian inference, causal inference, and building models that inform real decisions.
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-connect-blue?style=flat&logo=linkedin)](https://linkedin.com/in/justindwall)
