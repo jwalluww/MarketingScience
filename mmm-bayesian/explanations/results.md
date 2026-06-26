@@ -31,7 +31,7 @@ While I just advocated for a decrease in TV spend, given the history of MMM mode
 
 Display can be pulled down to $4K per week for now, as this channel showed very little evidence of effectiveness — we can continue to learn from this small budget. Trim Social and TV down to about $13K per week and bump Email up to $13K per week. Paid Search can have the remainder of the budget at approximately $42K per week.
 
-**Quick note on Email:** the potential range for Email ROAS is wide. We could see an extremely large return, but could also see an underwhelming one. We are advocating for a moderate increase to build more spend history in this channel and improve our precision over time.
+**Quick note on Email:** the potential range for Email ROAS is wide given the historical low-spend and low-variation in spend. We could see an extremely large return, but could also see an underwhelming one. We are advocating for a moderate increase to build more spend history in this channel and improve our precision over time.
 
 **Projected annual revenue lift from this reallocation: $166,218.**
 
