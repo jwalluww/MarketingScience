@@ -42,6 +42,7 @@ Four methods were attempted: naive pre/post, Difference-in-Differences (DiD), Sy
 explanations/
     email.md      -- The original ask from Megan
     results.md    -- Findings and recommendation
+    technical_notes.md -- Notes from the measurements
 data/
     luma_geo_data.csv   -- Synthetic dataset (78 weeks, 12 DMAs, 2024-2025)
 notebooks/

@@ -12,7 +12,7 @@ Justin,
 
 Hope you had a good weekend. I'm heading into our Q4 budget planning session with the board in about six weeks and I need to come prepared with some real answers, not just gut feel.
 
-We've been spending across a bunch of channels for the past two years: paid search, social (mostly Meta and TikTok), email to our existing list, display retargeting, and we brought TV back in Q3 last year as a brand push. Honestly, I'm not totally sure what's working. Our platform tells us paid search has incredible ROI, but I find it hard to believe it's *that* good, just feels like it's just taking credit for people who were already going to buy.
+We've been spending across a bunch of channels for the past two years: paid search, social (mostly Meta and TikTok), email to our existing list, display retargeting, and we brought TV back in Q3 last year as a brand push. Honestly, I'm not totally sure what's working. Our platform tells us paid search has incredible ROI, but I find it hard to believe it's really that good, just feels like it's just taking credit for people who were already going to buy.
 
 A few things I'd love to get clarity on before the board meeting:
 

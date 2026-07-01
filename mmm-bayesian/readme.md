@@ -22,7 +22,7 @@ Full findings and the response to Dana are in [explanations/results.md](explanat
 - 40% of revenue is marketing-driven, 60% is organic baseline
 - Paid Search drives the most attributed revenue (41% of marketing) but is showing signs of saturation
 - Email has the highest ROAS of any channel and is significantly underfunded
-- Display showed little evidence of effectiveness and was reduced to a learning budget
+- Display showed little evidence of effectiveness and was reduced to a minimal budget and should be revisited
 - TV spend is baked into baseline brand equity and should be trimmed carefully, not cut
 - Projected annual revenue lift from recommended reallocation: **$166,218**
 
@@ -40,8 +40,13 @@ The ideal saturation function for MMM is the Hill function, which is flexible an
 explanations/
     email.md      -- The original ask from Dana
     results.md    -- Findings and budget recommendation
+    technical_notes.md  -- Technical notes on the model itself
 data/
     arclight_mmm_data.csv   -- Synthetic dataset (156 weeks, 2022-2024)
 notebooks/
     marketing_mix_model_bayesian.ipynb  -- Full model, EDA, diagnostics, results
+outputs/
+    -- Any png or output from the model
+model/
+    -- The model itself
 ```
