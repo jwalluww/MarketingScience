@@ -21,6 +21,7 @@ Adstock is used for
 - What went wrong (Hill saturation, R-hat/ESS symptoms)
 - How you diagnosed it was non-identifiability and not something else
 - What you tried that didn't work, briefly
+We initially determined the most comprehensive way of measuring the 
 
 ## 5. The Fix and Why It's Defensible
 - Why Logistic over Hill
