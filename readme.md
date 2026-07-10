@@ -113,14 +113,14 @@ Synthetic SKU-store-week sales data with realistic seasonality, trend, promotion
 
 ---
 
-### 10. `ab-testing-framework` Experimentation Framework & Best Practices
-> *Did this change we made actually work, and how do we know we're not fooling ourselves?*
+### 10. `recommendation-personalization` Recommendation Systems for Personalization
+> *Out of everything we sell, what should we show this specific customer right now?*
 
-A reusable experimentation framework covering the full lifecycle: power calculation, randomization, sequential monitoring, and results readout. Includes a "bad experiments museum", deliberately broken tests (underpowered, peeked at early, wrong randomization unit) with annotated diagnoses.
+Synthetic retail transaction and browsing data across a large product catalog with realistic sparsity: most customers have touched only a handful of the thousands of available items. Builds a collaborative filtering model via matrix factorization (implicit feedback, since purchases/views aren't explicit ratings), a content-based model using product attributes for cold-start customers and new SKUs, and a hybrid approach that blends both. Evaluates against a popularity-baseline to show how much lift personalization actually provides over "just show them the bestsellers."
 
-**Methods:** Power analysis · t-test · Mann-Whitney · Bayesian A/B · sequential testing · CUPED · multiple comparisons correction
+**Methods:** Matrix factorization (ALS/implicit) · content-based filtering · hybrid recommenders · cold-start handling · precision@k / recall@k / NDCG evaluation
 
-**Skills demonstrated:** Experiment design · statistical rigor · framework thinking · communicating results to non-technical partners
+**Skills demonstrated:** Recommendation system architecture · implicit feedback modeling · cold-start strategy · personalization ROI vs. naive baseline
 
 ---
 
