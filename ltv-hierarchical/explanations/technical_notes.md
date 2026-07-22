@@ -1,40 +1,52 @@
-# Technical Notes: Luma Candle Co. Geo Incrementality Study
+# Technical Notes: Ridgeline Outfitters LTV Study
 *Prepared for: Data Science Manager Review*
 
 ## 1. Objective
-We ran a geo incrementality test to isolate the causal effect of a regional promotional campaign. The goal was to separate true incremental lift from organic trend and seasonality using a proper counterfactual, something a naive pre/post analysis can't do. The team set up a control group, but did not ensure the control group was repesentative of the United States since they were selected regionally and due to their large populations.
+
+
 
 ## 2. Data Summary
-The data has 78 weeks × 12 DMAs = 936 rows of weekly DMA-level revenue from January 2024 to June 2025 with 12 DMAs total. The 5 treated markets were in the Southeast/Mid-Atlantic and the 7 control markets were in the Midwest. The promotional window runs from March 3 to March 31, 2025, 5 total weeks, and we have several weeks post-promo to check for pull-forward. The ground truth incrementality that is baked in shows +22% lift on treated DMAs during promo and +4% post-promo hangover for 3 weeks. The dataset includes realistic noise, DMA-level trend, and seasonality (Q4 spike, Q1 dip). We do not know the spillover nor the spend on the campaign for labor or capital.
 
-## 3. Why Difference-in-Differences
-We tested a few methodologies but ran into issues noted later in the tech doc. The gold-standard and clear winner of this incrementality analysis is difference-in-differences. Our data is panel data with pre and post trends and treated and control markets, which fits the DiD mold perfectly. The parallel trends assumption holds up, though with additional time I would have tested this more rigurously with a placebo test or pre-period trend regression. The output of the DiD is interpretable as an ATT, and it's the industry-standard causal estimator for this type of geo-experiment when possible. Also held up technically as well - no issues with libraries or data when running.
 
-## 4. The Parallel Trends Assumption
-For Difference-in-differences the control markets and treated markets need to be trending the same in the pre-period to ensure they are both feeling the same fluctuations which will ensure the promo is the only difference between the two trend lines, otherwise there could be confounding factors affecting the trends. We validated the parallel trends assumption visually, by checking our plot; however, you could run a pre-period regression, a placebo/falsification test, or a correlation of pre-period trends to confirm. The EDA chart showed very little difference between the trends so I deemed it satisfactory for this analysis.
 
-## 5. The DiD Specification
-The formula we used for our DiD regression was this: `revenue ~ 1 + treated_int + post + treated_int:post`, where the `treated_int` is a binary representing whether the market was treated or control, and the variable `post` represents whether the data point was pre or post promo start. We only used data points from the pre-period and promotional period and left out data points from the post-promotional period, which with more time we could have included to measure the long-term effect of the promo. The `treated_int:post` variable has the coefficient which is the ATT - the average treatment effect for the treated. This can tell us the impact of the promotion on the treated markets. There was some growth in the trends for both treated and control markets leading up to the promo, which is why the 22% of actual lift is understated in our analysis; more specifically, the pooled-DiD coefficient is an absolute dollar figure and dividing by the pre-period average to get a percentage lift does not account for the trend growth in the pre-period (the dollar figure is a more reliable number here). Next time around we should randomize market assignment across a representative DMA universe so the interpretation can be generalizable to any market receiving the promo, and the ATT can actually be the ATE - average treatment effect, which can be more valuable to the business.
+## 3. Why BG/NBD + Gamma-Gamma
 
-## 6. The Synthetic Control Obstacle
-When attempting the synthetic control method using CausalPy, we ran into an issue where the algorithm was selecting 1 control market to represent all of the control markets due to the Dirichlet priors in the WeightedSumFitter method, which is a common issue. Even when I removed that market, the others were correlated enough to where a new control market took over as the representative. Flat Dirichlet priors do not penalize corner solutions, so with highly correlated markets, these corner solutions can occur. The weight for this market was 0.9999 for the cornered control market and near 0 for the others. To fix this, we would use ridge-regularized synthetic control but did not attempt in the interest of scope.
 
-## 7. The CausalImpact Obstacle
-When attempting CausalImpact, we ran into a much simpler issue, the library in Python is unmaintained. In a recent study done by recast (https://research.getrecast.com/geolift-sim-study) comparing 4 geo-lift tools, they used the R version of CausalImpact (by Kay Brodersen at Google) which is actively maintained. With more time we would have used a Python sub-process (basically running R script through Python) and used R's CausalImpact or perhaps Statsmodels UnobservedComponents. The errors we hit are below: 
-  1. `pd.core.dtypes.common.is_datetime_or_timedelta_dtype` removed in pandas 2.0
-  2. Integer positional indexing behavior changed in pandas 3.0, breaking internal standardization logic
 
-## 8. Validation
-For validation of the DiD methodology, the parallel trends were done visually, as there was little question whether those trends were parallel and did not require any pre-period regression to validate. The resulting coefficient from DiD matched our expectations and the HDI range was tight and relevant. For Bayesian DiD, my R-Hats are all at 1.0, and my ESS values (bulk & tail) are all sitting around 3000 to 4000, which validates that the sampling process is working as expected. Also, using synthetic data allows us to validate methodology against known ground truth, a capability unavailable with real data, and the primary reason synthetic datasets are used for methods validation.
+## 4. The BG/NBD Model — Purchase Process
+
+
+
+## 5. The Gamma-Gamma Model — Spend Process
+
+
+
+## 6. The lifetimes Obstacle
+
+
+
+## 7. The Gamma-Gamma Non-Identifiability Obstacle
+
+
+
+## 8. Model Validation — Holdout Period
+
+
 
 ## 9. Known Limitations
-The biggest limitation here is knowing the ground truth before the project and working with synthetic data. Real data is rarely as clean and the true lift is of course unknown. While this was meant to replicate a real business measurement, I kept the ground truth that was baked into the synthetic data in my back pocket for comparisons when the different lift numbers were calculated. There are aspects of the treated markets that are left unsaid, like the markets were not selected using a statistical methodology and are not representative of the country so the ATT was used in place of the ATE, which menas we cannot generalize across the country. We are also treating the treated markets as the same, whereas Atlanta may have had a different impact than Richmond. We also did not model the post-promo hangover, which should have been tracked in a real test to ensure no pull-forward was seen.
 
-## 10. If I Had More Time / Resources
-If I had more time, I would have done quite a few things:
-1. Designed a proper geo experiment using matched market selection (Google's library) with random assignments to estimate ATE instead of ATT.
-2. Run placebo tests or pre-period regression for DiD parallel trends validation.
-3. Run multi-market DiD with market fixed effects or log-transformed outcome to handle heterogeneous DMA scales. To fix this I could have used dummy variables for the treated markets ('revenue ~ 1 + C(dma) + post + C(dma):post') or log-transformed the outcome so the impact could have been scaled to the market's size ('log_revenue ~ 1 + treated_int + post + treated_int:post')
-4. Implemented ridge-regularized synthetic control to fix the donor collapse problem.
-5. Built a CausalImpact-equivalent directly in PyMC (BSTS model with control covariates) rather than relying on the unmaintained Python port. 
-6. Measured the post-promo hangover period as well.
+
+
+## 10. Deployment, Scoring & Monitoring
+*How this model gets used after the notebook closes.*
+
+### Retraining
+### Scoring
+### Monitoring & Drift Detection
+### Recommended Cadence
+
+## 11. If I Had More Time / Resources
+
+1.
+2.
+3.
