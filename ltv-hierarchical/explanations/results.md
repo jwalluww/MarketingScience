@@ -6,13 +6,15 @@
 ---
 
 ## The Short Version
+Hi Maya,
 
+The LTV model is complete and blah blah blah
 
 
 ---
 
 ## What Maya Asked For vs. What We Built
-
+The initial request was to understand how customers blah blah blah, we built blah blah blah
 
 
 ---
