@@ -42,22 +42,23 @@ The high tier customers are expected to each bring in about $1,819 this year. Gi
 ---
 
 ## How Confident Are We?
-
+The model is over-predicting by 0.095 purchases per customer on average. The bias for the model is overpredicting because the churn aspect isn't as confident - so the model says one-timers may return when they do not. This optimistic view of customers may place CAC numbers on the high side, but better to over-spend and actually gain the customers than under-spend and miss out on the customers.
 
 
 ---
 
-## What We Tried and What We Learned Along the Way
+## What would we do with more time
 
 
 
 ---
 
 ## Recommended Next Steps
-
--
--
+- Productionalize the model so we can begin tracking LTV over time.
+- Develop a marketing strategy around each customer LTV segment.
+- LTV should not be used as a short term marketing metric as it is , so avoid using it as a KPI for individual experiments. Instead, develop a marketing strategy and use LTV to determine the impact on customer value.
 - We built simple segments to show the difference between customers, but a more precise method would be to cluster the customers into segments based on their projected value & retention.
+- Forecast???
 
 ---
 
