@@ -1,7 +1,7 @@
-# Customer Lifetime Value Modeling: Findings & Recommendation
+# Customer Lifetime Value Modeling: Findings and Recommendation
 **To:** Maya Torres, VP of Growth, Ridgeline Outfitters  
 **From:** Data Science  
-**Re:** 12-Month Customer LTV Segmentation & Acquisition Spend Framework
+**Re:** 12-Month Customer LTV Segmentation and Acquisition Spend Framework
 
 ---
 
@@ -32,7 +32,7 @@ The initial request was to understand how much to spend acquiring and retaining 
 ## What Should We Spend to Acquire or Retain Each Segment?
 For CAC we are assuming a margin of 30% for simplicity.
 
-The low tier represents around 25% of our customers and are mostly one-time purchasers. We actually found that 46% of our customers are one-time purchasers, so it's at least this group and part of the next (next steps are to more precisely bucket these customers based on their projectec value & retention). These low-value customers are only expected to spend a few dollars each year and are not worth a large acquisition cost, optimisically around $1.30/customer, which does not meet the $60 threshold. If you are spending more than a few dollars here, it's too much. Our model slightly overstates retention & value, so it's actually telling you to spend more than you should to aquire these customers on the off-chance they hold some value. The projected value of these customers is not justifying a large cost to acquire, but that does not mean they should be ignored. The strategy for these customers is to run some low-cost touches to lure them back. If we send a one-time customer an organic email, a post-purchase sequence, and a new product announcement, they may return as a more valuable customer. This is a group to continue exploring using other marketing techniques such as experimentation & uplift modeling to further refine our strategies.
+The low tier represents around 25% of our customers and are mostly one-time purchasers. We actually found that 46% of our customers are one-time purchasers, so it's at least this group and part of the next (next steps are to more precisely bucket these customers based on their projectec value and retention). These low-value customers are only expected to spend a few dollars each year and are not worth a large acquisition cost, optimisically around $1.30/customer, which does not meet the $60 threshold. If you are spending more than a few dollars here, it's too much. Our model slightly overstates retention and value, so it's actually telling you to spend more than you should to aquire these customers on the off-chance they hold some value. The projected value of these customers is not justifying a large cost to acquire, but that does not mean they should be ignored. The strategy for these customers is to run some low-cost touches to lure them back. If we send a one-time customer an organic email, a post-purchase sequence, and a new product announcement, they may return as a more valuable customer. This is a group to continue exploring using other marketing techniques such as experimentation and uplift modeling to further refine our strategies.
 
 The mid tier customers are partially one-time purchasers, but also have some valuable customers mixed in. The average spend is low, but we are expecting about $45/customer this year. The max cost to acquire each of these customers is optimiscially $13.99/customer, which is still $46 over the $60 threshold. These customers should be treated similarly to the low-tier cusotmers, not completely ignored, but also not given a large marketing budget.
 
@@ -48,7 +48,7 @@ The model is over-predicting by 0.095 purchases per customer on average. The bia
 ---
 
 ## What would we do with more time
-
+With more time we could build another model to improve the churn accuracy that accounts for various other features of our customers like loyalty program and browse activity, which may help us hone in on which customers are going to churn. For more precise and accurate segments, we can run some clustering across the final scores instead of splitting the customers into equal quarter buckets. For more nuanced and personalized marketing strategies, we can test these customers in marketing campaigns and build uplift models to determine who needs marketing campaigns vs who will show up without marketing campaigns. We can also build a MMM model which can help calibrate cost-per-acquisition more precisely.
 
 
 ---
@@ -57,8 +57,7 @@ The model is over-predicting by 0.095 purchases per customer on average. The bia
 - Productionalize the model so we can begin tracking LTV over time.
 - Develop a marketing strategy around each customer LTV segment.
 - LTV should not be used as a short term marketing metric as it is , so avoid using it as a KPI for individual experiments. Instead, develop a marketing strategy and use LTV to determine the impact on customer value.
-- We built simple segments to show the difference between customers, but a more precise method would be to cluster the customers into segments based on their projected value & retention.
-- Forecast???
+- We built simple segments to show the difference between customers, but a more precise method would be to cluster the customers into segments based on their projected value and retention.
 
 ---
 
