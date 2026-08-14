@@ -2,7 +2,7 @@
 *Prepared for: Data Science Manager Review*
 
 ## 1. Objective
-Maya requested a way to understand how much to spend to aquire and retain customers to differentiate between one-time purchasers & repeat purchasers. We were initially spending the same amount to acquire each customers but needed a way to differentiate who to include in these expensive paid search campaigns. It was determined that we develop a forward looking LTV model to predict the future value of each customer and whether they are worth the $60 CAC.
+Maya requested a way to understand how much to spend to acquire and retain customers to differentiate between one-time purchasers & repeat purchasers. We were initially spending the same amount to acquire each customers but needed a way to differentiate who to include in these expensive paid search campaigns. It was determined that we develop a forward looking LTV model to predict the future value of each customer and whether they are worth the $60 CAC.
 
 
 ## 2. Data Summary
@@ -10,7 +10,7 @@ The data is simple, 1000 customers, 5,282 orders, data from 1/1/2022 to 12/31/20
 
 
 ## 3. Why BG/NBD + Gamma-Gamma
-The decision to go Bayesian over ML comes down to two factors. Firstly, the request from Maya specifically calls out requiring confidence ranges and while ML has confidence intervals, Bayesian credible intervals are more interpretable. Secondly, the primary features driving LTV are RFM-based, which defeats the purpose of ML which is to use non-RFM features to enhance predictability.
+The decision to go Bayesian over ML comes down to two factors. Firstly, the request from Maya specifically calls out requiring in her words "confidence ranges". While ML has confidence intervals, Bayesian credible intervals are more intuitive. Secondly, the primary features driving LTV are RFM-based, which defeats the purpose of ML which is to use non-RFM features to enhance predictability.
 
 Let's review the proper way to read a BG-NBD model
 0. What do the parameters mean...
@@ -72,8 +72,7 @@ Firstly, gamma gamma answers how much customers will spend each time they buy. A
 
 
 ## 6. The lifetimes Obstacle
-Sure enough, Lifetimes BetaGeoFitter failed to converge with both default and custom initial parameters. The dropout parameters (a, b) collapsed to
-effectively zero regardless of penalizer or starting values, indicating a degenerate likelihood surface rather than a tuning problem. With this largely one-time-purchase population, the optimizer found a corner solution where no one churns.
+Lifetimes BetaGeoFitter failed to converge with both default and custom initial parameters. The dropout parameters (a, b) collapsed to effectively zero regardless of penalizer or starting values, indicating a degenerate likelihood surface rather than a tuning problem. With this largely one-time-purchase population, the optimizer found a corner solution where no one churns.
 This likely occurred because the T values are so large and the number of one-time purchasers is too many. We moved to weeks instead of days, and tried initial params but ended up moving to PYMC-Marketing because it still wasn't working.
 Switching to PyMC-Marketing for full Bayesian estimation with priors that prevent parameter collapse, acting like guardrails. In addition, I would probably not deploy a Lifetimes model due to the library not being maintained.
 
@@ -112,6 +111,5 @@ The model should be scored every few months, to pick up any new customer trends 
 2. Run testing on LTV model to determine it's accuracy & precision.
 3. Clustering the final scores to create segments to be more precise than quarter splits.
 4. Build uplift model on top of this model to help define marketing strategy.
-5. ROAS / CAC Calibration via add_cost_per_target_calibration — this is in the MMM module, not CLV, but it's directly relevant to the Maya conversation you were just having. It calibrates a marketing mix model against actual cost-per-acquisition estimates. This is the natural "next project" extension — instead of static CAC thresholds from LTV alone, you'd have a full MMM that optimizes spend allocation across channels while respecting CAC ceilings by segment.
-
-Experiment Calibration / lift test integration — lets you fine-tune a model using empirical experiment results. This connects directly to the "LTV shouldn't be a short-term metric, use it with longer experiments" conversation you just had — this is PyMC-Marketing's built-in mechanism for reconciling model predictions with actual test results.
+5. Recalibrate ROAS/CAC via add_cost_per_target_calibration functino from the MMM module in PYMC-Marketing. It calibrates a marketing mix model against actual cost-per-acquisition estimates. This is the natural "next project" extension, instead of static CAC thresholds from LTV alone, I'd have a full MMM that optimizes spend allocation across channels while respecting CAC ceilings by segment.
+6. Experiment Calibration and lift test integration, which fine-tunes a model using empirical experiment results. This connects directly to LTV not being be a short-term metric, but it can be used for longer experiments. This is PyMC-Marketing's built-in mechanism for reconciling model predictions with actual test results.
