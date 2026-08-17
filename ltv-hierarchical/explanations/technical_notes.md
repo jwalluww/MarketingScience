@@ -72,11 +72,10 @@ Firstly, gamma gamma answers how much customers will spend each time they buy. A
 
 
 ## 6. The lifetimes Obstacle
-Lifetimes BetaGeoFitter failed to converge with both default and custom initial parameters. The dropout parameters (a, b) collapsed to effectively zero regardless of penalizer or starting values, indicating a degenerate likelihood surface rather than a tuning problem. With this largely one-time-purchase population, the optimizer found a corner solution where no one churns.
-This likely occurred because the T values are so large and the number of one-time purchasers is too many. We moved to weeks instead of days, and tried initial params but ended up moving to PYMC-Marketing because it still wasn't working.
-Switching to PyMC-Marketing for full Bayesian estimation with priors that prevent parameter collapse, acting like guardrails. In addition, I would probably not deploy a Lifetimes model due to the library not being maintained.
-
-Rebuilt RFM in weeks (vs days), days caused optimizer failure in lifetimes, weeks preemptively resolving scaling issues in PyMC-Marketing.
+Lifetimes BetaGeoFitter failed to converge with both default and custom initial parameters. The dropout parameters (a, b) collapsed to near zero regardless of penalizer or starting values, indicating a degenerate likelihood surface rather than a tuning issue. With this largely one-time-purchase population, the optimizer found a corner solution where no one churns.
+This likely occurred because the T values are so large and the number of one-time purchasers is too many. We attempted to switch Lifetimes to weeks instead of days, but the issue continued.
+We switched to PyMC-Marketing for full Bayesian estimation with priors that act like guardrails and prevent parameter collapse. In this library we his an issue as well (stated below in #7) where we started in days and switched to weeks once again.
+In addition, I would not deploy a Lifetimes model due to the library not being maintained.
 
 
 ## 7. The Gamma-Gamma Non-Identifiability Obstacle
@@ -84,7 +83,7 @@ Gamma-Gamma non-convergence on raw monetary values (r_hat ~2.27, ESS ~5-7 across
 
 
 ## 8. Model Validation — Holdout Period
-The holdout period is the last 6 months of 2024. The holdout mean is 0.873 and the predicted mean is 0.968. The model is over-predicting by 0.095 purchases per customer on average. The bias for the model is overpredicting because the dropout aspect isn't as strong - so the model says one-timers may return when they do not. This optimistic view of customers may place CAC numbers on the high side, but better to over-spend and actually gain the customers than under-spend and miss out on the customers.
+The holdout period is the last 6 months of 2024. The holdout mean is 0.873 and the predicted mean is 0.968. The model is over-predicting by 0.095 purchases per customer on average. The bias for the model is overpredicting because the dropout aspect isn't as strong - so the model says one-timers may return when they do not. This optimistic view of customers may place CAC numbers on the high side, but better to over-spend and actually gain the customers than under-spend and miss out on the customers. This is the reason we are suggesting to the business to use the lower bound of the estimates to ensure costs for customer acquisition aren't too high.
 
 
 ## 9. Known Limitations
@@ -94,10 +93,10 @@ One known limitation of Bayesian method is the inability to use features to help
 *How this model gets used after the notebook closes.*
 
 ### Retraining
-The model can be retrained annually.
+The model can be retrained quarterly to reflect changes in customer behavior, macro conditions, and the overall business trend. Retraining can also be timely given how slow MCMC is on a full customer base. Each time we retrain, we can save the model as a NetCDF (.nc), which will score the customers each time we call it.
 
 ### Scoring
-We can score this model using the underlying numpy code and avoid MCMC each time we need fresh scores. 
+We can score this model using the posterior and avoid MCMC each time we need fresh scores, weekly or monthly depending on usage. A full customer base only takes seconds to score. The scores will live in a Snowflake table where we can query them easily. 
 
 ### Monitoring & Drift Detection
 We can monitor the features of this model between our training time period to our production time period to ensure the features remain consistent.
