@@ -15,7 +15,7 @@ The decision to go Bayesian over ML comes down to two factors. Firstly, the requ
 Let's review the proper way to read a BG-NBD model
 0. What do the parameters mean...
 - r: How purchase rates vary across customers. Low r means more heterogeneity where some customers buy a lot and some buy very little, high r means customers are similar to each other.
-- alpha: helps set the expected purchase rate per time unit. r/alpha in this case gives you the purchases per cusotmer per week on average. So we have 0.037, or 1 every 6 months.
+- alpha: helps set the expected purchase rate per time unit. r/alpha in this case gives you the purchases per customer per week on average. So we have 0.037, or 1 every 6 months.
 - phi: dropout probability, value near 0 means avg customer has very low per-transaction probability of churning.
 - kappa: how tightly customers are clustered around the mean dropout probability; high kappa means customers are similar in churn behavior, low means some churn faster than others.
 - a: beta distribution parameter over dropout probabilities - derived directly from phi and kappa. Shows how many customers have high churn probability. When it's close to zero, it's saying nearly nobody churns. We know from our model that isn't true, but we had a degenerate corner problem.
@@ -57,15 +57,15 @@ The beta-geometric negative binomial distribution model is meant to predict purc
 
 ## 5. The Gamma-Gamma Model — Spend Process
 Let's review the proper way to read a gamma-gamma model
-Firstly, gamma gamma answers how much customers will spend each time they buy. Assuming each customers has their own true average spend level. One gamm si for the transaction level noise around the customers mean and the other is te population distribution of the personal means. 
+Firstly, gamma gamma answers how much customers will spend each time they buy. Assuming each customers has their own true average spend level. One gamma is for the transaction level noise around the customers mean and the other is te population distribution of the personal means. 
 0. What do the parameters mean...
-- p: how much individual transactions vary around a customers own personal mean spend, within customer noise. Clsoe to 1 means moderate transaction level variability. Higher p means tighter clustering around the customer mean, lower p means larger per transaction swings.
+- p: how much individual transactions vary around a customers own personal mean spend, within customer noise. Close to 1 means moderate transaction level variability. Higher p means tighter clustering around the customer mean, lower p means larger per transaction swings.
 - q: how personal spend means are distributed across the customer population. higher q means population spend is more concentrated - people are more alike. lower q means wider range of customer spends. it works with v to set the actual dollar.
 - v: the rate parameter of the population level gamma. together wtih q, sets the average spend level across customer base. v/ maps back to dollars when multiplied by mv_mean -> expected spend per transaction at the population level.
 1. What is this customer's personal spend fingerprint?
     - estimated from their past monetary value
-    - shrunk towards teh popuation mean for sparse data customers
-    - that's teh partial pooling hierarchical potion
+    - shrunk towards the popuation mean for sparse data customers
+    - that's the partial pooling hierarchical potion
 2. given the fingerprint spend, what will they spend next time?
     - sample from personal gamma with shape p
     - average across many transactions = their expected spend per order
@@ -74,7 +74,7 @@ Firstly, gamma gamma answers how much customers will spend each time they buy. A
 ## 6. The lifetimes Obstacle
 Lifetimes BetaGeoFitter failed to converge with both default and custom initial parameters. The dropout parameters (a, b) collapsed to near zero regardless of penalizer or starting values, indicating a degenerate likelihood surface rather than a tuning issue. With this largely one-time-purchase population, the optimizer found a corner solution where no one churns.
 This likely occurred because the T values are so large and the number of one-time purchasers is too many. We attempted to switch Lifetimes to weeks instead of days, but the issue continued.
-We switched to PyMC-Marketing for full Bayesian estimation with priors that act like guardrails and prevent parameter collapse. In this library we his an issue as well (stated below in #7) where we started in days and switched to weeks once again.
+We switched to PyMC-Marketing for full Bayesian estimation with priors that act like guardrails and prevent parameter collapse. In this library we hit an issue as well (stated below in #7) where we started in days and switched to weeks once again.
 In addition, I would not deploy a Lifetimes model due to the library not being maintained.
 
 
@@ -96,13 +96,10 @@ One known limitation of Bayesian method is the inability to use features to help
 The model can be retrained quarterly to reflect changes in customer behavior, macro conditions, and the overall business trend. Retraining can also be timely given how slow MCMC is on a full customer base. Each time we retrain, we can save the model as a NetCDF (.nc), which will score the customers each time we call it.
 
 ### Scoring
-We can score this model using the posterior and avoid MCMC each time we need fresh scores, weekly or monthly depending on usage. A full customer base only takes seconds to score. The scores will live in a Snowflake table where we can query them easily. 
+We can score this model using the posterior and avoid MCMC each time we need fresh scores, weekly or monthly depending on usage to pick up any new customer trends and avoid the messiness and noise of every day purchasing. A full customer base only takes seconds to score. The scores will live in a Snowflake table where we can query them easily. 
 
 ### Monitoring & Drift Detection
 We can monitor the features of this model between our training time period to our production time period to ensure the features remain consistent.
-
-### Recommended Cadence
-The model should be scored every few months, to pick up any new customer trends and avoid the messiness and noise of every day purchasing. 
 
 ## 11. If I Had More Time / Resources
 
