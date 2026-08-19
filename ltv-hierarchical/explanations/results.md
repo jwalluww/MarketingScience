@@ -65,4 +65,4 @@ With more time we could build a machine learning model to improve the churn accu
 
 ---
 
-*Analysis conducted using BG/NBD + Gamma-Gamma models (PyMC-Marketing). Results reflect posterior mean estimates with 90% credible intervals. lifetimes MLE attempted; convergence failure documented in notebook and technical notes.*
+*Analysis conducted using BG/NBD + Gamma-Gamma models (PyMC-Marketing). Results reflect posterior mean estimates with 95% credible intervals. Modeling documented in notebook and technical notes.*
