@@ -8,7 +8,7 @@
 ## The Short Version
 Hi Maya,
 
-Good news, we found your top 25% of customers are worth 400 more than your bottom 25% of customers.
+Good news, we found your top 25% of customers are worth 400x more than your bottom 25% of customers.
 
 We built a customer lifetime value score to estimate how much a customer is worth over the next 12 months. The score comes with confidence ranges so you have some wiggle room when deciding how much to spend in acquiring the customer. You can now compare the cost to acquire or retain each customer against their worth to set thresholds and limits on ad spend.
 
@@ -32,15 +32,15 @@ The initial request was to understand how much to spend acquiring and retaining 
 ---
 
 ## What Should We Spend to Acquire or Retain Each Segment?
-For CAC we are assuming a margin of 30% for simplicity.
+For CAC we are assuming a margin of 30% for simplicity. Our model slightly overstates retention and value, so it's actually telling you to spend more than you should to acquire these customers on the off-chance they hold some value, which is why we will use the lower bound of our confidence range.
 
-The low tier represents around 25% of our customers and are mostly one-time purchasers. We actually found that 46% of our customers are one-time purchasers, so it's at least this group and part of the next. These low-value customers are only expected to spend a few dollars each year and are not worth a large acquisition cost, optimistically around $1.30/customer, which does not meet the $60 threshold. If you are spending more than a few dollars here, it's too much. Our model slightly overstates retention and value, so it's actually telling you to spend more than you should to acquire these customers on the off-chance they hold some value, which is why we will use the lower bound of our confidence range. The projected value of these low-tier customers is not justifying a large cost to acquire, but that does not mean they should be ignored. The strategy for these customers is to run some low-cost touches to lure them back. If we send a one-time customer an organic email, a post-purchase sequence, and a new product announcement, they may return as a more valuable customer. This is a group to continue exploring using other marketing techniques such as experimentation and uplift modeling to further refine our strategies.
+The low tier represents around 25% of our customers and are mostly one-time purchasers. We actually found that 46% of our customers are one-time purchasers, so it's at least this group and part of the next. These low-value customers are only expected to spend a $3.61 each year and are not worth a large acquisition cost, around $1.08/customer, which does not meet the $60 threshold. The projected value of these low-tier customers is not justifying a large cost to acquire, but that does not mean they should be ignored. The strategy for these customers is to run some low-cost touches to lure them back. If we send a one-time customer an organic email, a post-purchase sequence, and a new product announcement, they may return as a more valuable customer. This is a group to continue exploring using other marketing techniques such as experimentation and uplift modeling to further refine our strategies.
 
-The mid tier customers are partially one-time purchasers, but also have some valuable customers mixed in. The average spend is low, but we are expecting about $43/customer this year. The max cost to acquire each of these customers is optimistically $13.99/customer, which is still $46 over the $60 threshold. These customers should be treated similarly to the low-tier customers, not completely ignored, but also not given a large marketing budget.
+The mid tier customers are partially one-time purchasers, but also have some valuable customers mixed in. The average spend is low, but we are expecting about $43.48/customer this year. The max cost to acquire each of these customers is optimistically $13.04/customer, which is still $46 under the $60 threshold. These customers should be treated similarly to the low-tier customers, not completely ignored, but also not given a large marketing budget.
 
-The high tier customers are expected to each bring in about $1,769 this year. Given our 30% margin we should budget $555/customer for acquisition. These aren't our elite customers, but are bringing in enough value to justify the expenses.
+The high tier customers are expected to each bring in about $1,769.85 this year. Given our 30% margin we should budget $530.95/customer for acquisition. These aren't our elite customers, but are bringing in enough value to justify the expenses.
 
-The elite customers are expected to bring in a whopping $17,542 this year, and the budget for these customers should be around $5,393, plenty of room to spare around that $60 baseline. We shouldn't solely focus on these customers or spam them with too many messages, but they justify the paid search and social costs we have been debating lately.
+The elite customers are expected to bring in a whopping $17,542.83 this year, and the budget for these customers should be around $5,262.85, plenty of room to spare around that $60 baseline. We shouldn't solely focus on these customers or spam them with too many messages, but they justify the paid search and social costs we have been debating lately.
 
 
 ---
