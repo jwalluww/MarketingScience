@@ -8,7 +8,7 @@
 ## The Short Version
 Hi Maya,
 
-Good news, we found your top 25% of customers are worth 400x more than your bottom 25% of customers.
+Good news, we found the top 25% of customers are worth 400x more than the bottom 25% of customers at Ridgeline.
 
 We built a customer lifetime value score to estimate how much a customer is worth over the next 12 months. The score comes with confidence ranges so you have some wiggle room when deciding how much to spend in acquiring the customer. You can now compare the cost to acquire or retain each customer against their worth to set thresholds and limits on ad spend.
 
