@@ -1,4 +1,85 @@
-What's the value function? Conversion count, revenue, or margin-after-discount? Your causal forest and meta-learners can target any of these, but you have to pick one before building — it decides what y even is. If Alex says "I care about margin, not just bookings," your outcome variable changes and you rebuild, not tune.
-Can marketing actually act on a targeted list, or does the system only support blanket sends? This is the one that could genuinely stop the project. If BlueWing's email platform can only do "send to everyone" or "send to no one," then a beautifully built policy tree is a research exercise with no deployment path. Worth confirming before you invest in the policy-learning step, not after.
-Is the 14-day conversion window the right definition of success? Sleeping dogs are a habit-formation story — "we've trained them to wait for the next sale" is a claim about repeated behavior, not a single 14-day window. If the real concern is long-term behavior change, a single-campaign RCT snapshot might understate how bad the sleeping-dog problem actually is. Worth flagging as a limitation even if you don't have longer-horizon data to test it.
-The one I'd bring up even though nobody asks: is the org actually willing to withhold a discount from a segment, even with solid evidence? This is a real organizational failure mode, not a hypothetical — plenty of marketing teams have an unwritten "we market to everyone" norm, and a model recommending "don't send to your best customers" can die in a meeting for political reasons that have nothing to do with the analysis being right. Not something you can fix technically, but worth surfacing early so you're not surprised later.
+# BlueWing Air — Promotional Targeting: Results
+**To:** Alex Torres, Director of CRM & Loyalty Marketing, BlueWing Air
+**From:** Justin Wall, Analytics Consultant
+**Re:** Need help figuring out who our promo codes are actually working on
+
+---
+
+Hi Alex, please read through my findings below and send over your thoughts.
+
+*9/23/2026*
+*Justin Wall*
+
+---
+
+## The Ask
+
+*[1-2 sentences on what Alex requested — see stakeholder_request_email.md]*
+
+## TL;DR
+
+*[Headline net revenue impact number, with confidence interval]*
+
+*[One-sentence recommendation]*
+
+---
+
+## Background
+
+*[Campaign design: 50/50 randomized test, sample size, discount amount, channel]*
+
+---
+
+## Key Findings
+
+### 1. Are we giving away margin to people who'd book anyway?
+
+*[$ given away to sure-things]*
+
+### 2. Are we training our best customers to expect discounts?
+
+*[Finding — framed as a monitoring recommendation, not a fabricated number]*
+
+*[Watch-list stat: % of sure-things trending negative]*
+
+### 3. Who should actually get the discount?
+
+*[Persuadable segment size, % of base]*
+
+*[Policy tree visual]*
+
+---
+
+## Value Decomposition
+
+*[Chart/table: where the net gain actually comes from — sure-things, sleeping dogs, persuadables]*
+
+---
+
+## Financial Impact Summary
+
+*[Table: blanket-send revenue vs. policy revenue vs. discount $ saved]*
+
+---
+
+## Recommendation
+
+*[Deploy the policy tree rule / targeting list]*
+
+---
+
+## Monitoring & Next Steps
+
+*[Permanent holdout group]*
+
+*[Re-score cadence before each future campaign]*
+
+*[Watch-list follow-up]*
+
+---
+
+## Limitations
+
+*[Campaign-specificity — this is calibrated to $5-via-email, not coupons generally]*
+
+*[Segment boundaries are estimates, not hard truths]*

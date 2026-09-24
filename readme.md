@@ -151,7 +151,7 @@ MarketingScience/
 ├── mta-attribution/
 ├── promo-cannibalization/
 ├── demand-forecasting/
-└── ab-testing-framework/
+└── recommendation-personalization/
 ```
 
 Each project folder contains its own README with the business question, modeling decisions, key findings, and limitations.
