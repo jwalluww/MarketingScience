@@ -56,9 +56,11 @@ I thought once more about this problem and came up with a different definition. 
 ### 3. Who should actually get the discount?
 
 *[Persuadable segment size, % of base]*
+This upcoming TakeOff Tuesday promo campaign should be sent to 90% of our population, to maximize revenue. I understand that it appears that only 10% of our population are persuadables, but given our 
 
 
 *[Policy tree visual]*
+When we have the opportunity to build a model, we should build the model as the precision will be greater; having said that, I pasted a chart for you that gives a shortcut to who you can target for this type of campaign without needing a full model build. This is a set of policy rules from this model to use as shorthand for next campaign.
 
 
 ---
@@ -80,26 +82,27 @@ I thought once more about this problem and came up with a different definition. 
 ## Recommendation
 
 *[Deploy the policy tree rule / targeting list]*
-
+I recommend you use our targeting list to send this upcoming TakeOff Tuesday promo email, and 
 
 ---
 
 ## Monitoring & Next Steps
 
 *[Permanent holdout group]*
-
+Next steps, let's make sure that each campaign has a small 10% holdout group so we can continue to monitor our customers interactions with promotions and retrain this model when necessary. 
 
 *[Re-score cadence before each future campaign]*
-
+Before each campaign, we don't have to necessarily retrain the model, we can just rescore the customer population using our current model, until we see from the holdout group that the lift is declining, then we know the model is degredating and needs retraining.
 
 *[Watch-list follow-up]*
-
+We will check in to see if our customers are switching groups - e.g., sure-things becoming persuadables would indicate that our customers are beginning to expect these discounts.
 
 ---
 
 ## Limitations
 
 *[Campaign-specificity — this is calibrated to $5-via-email, not coupons generally]*
-
+This model specifically is calibrated to a 15% discount for flight bookings via email. It cannot guarantee the same type of performance from 
 
 *[Segment boundaries are estimates, not hard truths]*
+As stated earlier, the segments represent the general idea of uplift modeling, but in real life, we want to maximize our revenue and target a much broader audience of customers to avoid losing out on any sales.
