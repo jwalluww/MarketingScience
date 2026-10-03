@@ -14,7 +14,7 @@ Hi Alex, please read through my findings below and send over your thoughts.
 
 ## The Ask
 
-Your concern on the TakeOff Tuesday Flash Sale Discount Code is very real! After running some numbers, we found four distinct groups of customers: 1) Sure Things - customers who will purchase regardless of promo codes, 2) Lost Causes - customers who are not going to purchase regardless of promo codes, 3) Sleeping Dogs - customers who may purchase organically, but are tired of hearing from us, 4) Persuadables - customers who will only purchase if we send them a promo code. This final group is 10.9% of the population. Regardless of the size of these groups, they can all tell us something about their behavior around discounts. We should develop strategies for each of these customers segments and monitor them over time for behavior changes. Below I have the financials and recommendations moving forward. 
+Your concern on the TakeOff Tuesday Flash Sale Discount Code is very real! After running some numbers, we found four distinct groups of customers: 1) Sure Things - customers who will purchase regardless of promo codes, 2) Lost Causes - customers who are not going to purchase regardless of promo codes, 3) Sleeping Dogs - customers who may purchase organically, but are tired of hearing from us, 4) Persuadables - customers who will only purchase if we send them a promo code. This final group is the one we were looking for, but each group can tell us something about their behavior around discounts. We should develop strategies for each of these customers segments and monitor them over time for behavior changes. Below I have the financials and recommendations moving forward.
 
 ## TL;DR
 
@@ -22,14 +22,14 @@ Your concern on the TakeOff Tuesday Flash Sale Discount Code is very real! After
 The net-revenue by sending the campaign to the solely the Persuadables is $268k, which is down $6k from sending to everyone.
 
 *[One-sentence recommendation]*
-We recommend sending the TakeOff Tuesday Flash Sale Discount Code to solely the list of Persuadables to maximize revenue. 
+We recommend sending the TakeOff Tuesday Flash Sale Discount Code to solely the list of of customers generated from our uplift model, which is around 90% of the population. 
 
 
 ---
 
 ## Background
 Just to remind you...
-The 50/50 campaign we ran for this promo was sent via email to 10,000 customers with a 10,000 customer holdout group. We balanced the groups on RFM metrics, email engagement, and loyalty tier to ensure those factors were not interfering with the effect of the promotion. The TakeOff Tuesday Flash Sale was a 15% discount on flight bookings where we saw 25.7% conversion from the discount group, and 20.9% converion from the control group. That's 4.8% absolute lift and 22.9% relative lift. The cost of the campaign from discounts was $79k and the incremental revenue was $96k. We analyzed this campaign and used the data from it to build a model to determine who actually needs a discount to purchase vs who would have purchased anyway.
+The 50/50 campaign we ran for this promo was sent via email to 10,000 customers with a 10,000 customer holdout group. We made sure the groups were equal on RFM metrics, email engagement, and loyalty tier so those factors would not interfere with the effect of the promotion. The TakeOff Tuesday Flash Sale was a 15% discount on flight bookings where we saw 25.7% conversion from the discount group, and 20.9% converion from the control group. That's 4.8% absolute lift and 22.9% relative lift. The cost of the campaign from discounts was $78k and the incremental revenue was $21k, which accounts for the cost.
 
 ---
 
