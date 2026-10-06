@@ -8,6 +8,7 @@
 ## Objective
 
 *[Problem framing — CATE estimation for promo targeting]*
+Alex wants to know which customers should receive a discount and which should not for his upcoming promotion. We are determining the conditional average treatment effect of sending a promo to select customers.
 
 ---
 

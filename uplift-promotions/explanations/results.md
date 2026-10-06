@@ -19,7 +19,7 @@ Your concern on the TakeOff Tuesday Flash Sale Discount Code is very real! After
 ## TL;DR
 
 *[Headline net revenue impact number, with confidence interval]*
-The net-revenue by sending the campaign to the solely the Persuadables is $268k, which is down $6k from sending to everyone.
+The net-revenue by sending the campaign to the solely the Persuadables is $297,599.14, which is up $19k from sending to everyone.
 
 *[One-sentence recommendation]*
 We recommend sending the TakeOff Tuesday Flash Sale Discount Code to solely the list of of customers generated from our uplift model, which is around 90% of the population. 
@@ -56,18 +56,28 @@ I thought once more about this problem and came up with a different definition. 
 ### 3. Who should actually get the discount?
 
 *[Persuadable segment size, % of base]*
-This upcoming TakeOff Tuesday promo campaign should be sent to 90% of our population, to maximize revenue. I understand that it appears that only 10% of our population are persuadables, but given our 
+This upcoming TakeOff Tuesday promo campaign should be sent to 90% of our population, to maximize net revenue and avoiding giving away any discounts. I understand that it appears that only 10% of our population are persuadables, but to maximize net revenue, we need to capture more persuadables who fell deeper into the model. 
 
 
 *[Policy tree visual]*
 When we have the opportunity to build a model, we should build the model as the precision will be greater; having said that, I pasted a chart for you that gives a shortcut to who you can target for this type of campaign without needing a full model build. This is a set of policy rules from this model to use as shorthand for next campaign.
 
+![Policy Tree](image.png)
+
+Quick interpretation - send to either A) Customers with less than Gold Tier Loyalty with a sub 0.5 email engagement score, or B) Customers with less than Gold tier with a greater than 0.5 email engagement score but with a customer tenure of 19 months or less.
 
 ---
 
 ## Value Decomposition
 
 *[Chart/table: where the net gain actually comes from — sure-things, sleeping dogs, persuadables]*
+Lost Cause: 51% of population, $33.06 if we send to everyone, $33.10 if we send based on the policy, this gives us $125 additional from the policy.
+	n_customers	pct_of_base	revenue_per_cust_if_blanket	revenue_per_cust_if_final_policy	total_value_diff
+pred_segment					
+lost_cause	3087.0	0.514500	33.058761	33.099432	125.548874
+persuadable	631.0	0.105167	42.323668	42.323668	0.000000
+sleeping_dog	95.0	0.015833	58.715627	159.735554	9596.892996
+sure_thing	2187.0	0.364500	64.497137	67.004420	5483.428473
 
 
 ---
@@ -75,6 +85,14 @@ When we have the opportunity to build a model, we should build the model as the 
 ## Financial Impact Summary
 
 *[Table: blanket-send revenue vs. policy revenue vs. discount $ saved]*
+Our policy can earn us an additional $4k on this campaign by sending to the appropriate customers.
+
+	n_treated	pct_treated	gross_revenue	discount_cost	net_revenue	net_vs_blanket
+Send to no one	0.0	0.00	260263.18	0.00	260263.18	-15128.68
+Persuadables only (CI + breakeven)	593.0	0.10	266720.99	3289.93	263431.06	-11960.80
+CF recommendation (tau > 0)	4893.0	0.82	328759.19	36794.58	291964.61	16572.75
+Value backtest (top 94% by tau)	5640.0	0.94	339446.93	44384.79	295062.14	19670.28
+Send to everyone (blanket)	6000.0	1.00	323990.42	48598.56	275391.85	0.00
 
 
 ---
@@ -82,7 +100,7 @@ When we have the opportunity to build a model, we should build the model as the 
 ## Recommendation
 
 *[Deploy the policy tree rule / targeting list]*
-I recommend you use our targeting list to send this upcoming TakeOff Tuesday promo email, and 
+I recommend you use our targeting list to send this upcoming TakeOff Tuesday promo email, which is about 90% of customers, just lopping off the back 10%. In future campaigns, we can either build another model, or if we're unavailable, use the policy tree rule.
 
 ---
 
