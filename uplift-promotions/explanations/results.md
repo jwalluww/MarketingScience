@@ -24,27 +24,22 @@ Your concern on the TakeOff Tuesday Flash Sale Discount Code is very real! After
 This final group is the one we were looking for, but each group can tell us something about their behavior around discounts. We should develop strategies for each of these customers segments and monitor them over time for behavior changes.
 
 ## TL;DR
-*[One-sentence recommendation]*
-We recommend sending the TakeOff Tuesday Flash Sale Discount Code to the list of of customers generated from the model, which is around 94% of the population.
-
-*[Headline net revenue impact number, with confidence interval]*
-The net-revenue by sending the promotional discount to the models's recommended list of customers is $295,062.14, which is up $19,670.28 from sending to everyone.
+To fully maximize net revenue, we recommend sending the TakeOff Tuesday Flash Sale Discount Code to the list of of customers generated from the model, which is around 94% of the population. The net revenue by sending the promotional discount to the models's recommended list of customers is $983,540, which is up $65,568 from sending to everyone.
 
 ---
 
 ## Background
 Quick reminder on the original campaign:
-The 50/50 campaign we ran for this promo was sent via email to 10,000 customers with a 10,000 customer holdout group. We made sure the groups were equal on RFM metrics, email engagement, and loyalty tier so those factors would not interfere with the effect of the promotion. The TakeOff Tuesday Flash Sale was a 15% discount on flight bookings where we saw 25.7% conversion from the discount group, and 20.9% converion from the control group. That's 22.9% increase in booking rate (4.8pp increase). The cost of the campaign from discounts was $78k and the incremental revenue was $21k, which accounts for the cost.
+The 50/50 campaign we ran for promo was sent via email to 10,000 customers with a 10,000 customer holdout group. We made sure the groups were equal on RFM metrics, email engagement, and loyalty tier so those factors would not interfere with the effect of the promotion. The TakeOff Tuesday Flash Sale was a 15% discount on flight bookings where we saw 25.7% conversion from the discount group, and 20.9% converion from the control group. That's 22.9% increase in booking rate (4.8pp increase). The actual cost of the campaign from discounts was $78k and the incremental revenue was $21k, which accounts for the cost. These actual numbers will differ from the remainder of the numbers in this report as we only sent the promo to half of the customer list, and the model assumes we are including the other half as well.
 
 ---
 
 ## Key Findings
 
-Let me address some of your questions below:
+Let me address some of your key questions below:
 
 ### 1. Are we giving away margin to people who'd book anyway?
 
-*[$ given away to sure-things]*
 Breaking things out, here are the percentages of our test group from each of the segments:
 Lost Cause: 51%
 Sure Thing: 37%
