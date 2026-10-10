@@ -110,12 +110,14 @@ Policy learning — The last step, where all that analysis turns into an actual 
 ## Model Selection
 
 *[Causal Forest — rationale: convergent top-2 across metrics, honest CIs, face-validity match]*
+I ended up choosing the causal forest because it was one of the two best models across every metric, it comes with confidence intervals, and 
 
 ---
 
 ## Segmentation Methodology
 
 *[CI-based movable/non-movable split + economic break-even filter]*
+We are going to use the value-based backtest to determine the customer list for this model, but it's an interesting & useful exercise to determine the segments around this model. The uplift practice isn't complete without explaning lost cause, sure thing, persuadable, and sleeping dogs. To determine these segments I used the causal forest model, and took the statistically significantly higher than 0 customers as persuadables
 
 ---
 
