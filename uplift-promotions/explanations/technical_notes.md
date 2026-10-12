@@ -16,11 +16,11 @@ Alex wants to know which customers should receive a discount and which should no
 
 ### Source & Design
 *[RCT, 50/50 split, n=, discount %, outcome window]*
-The data for this model was collected in a 50/50 randomized control test for 20,000 customers on a Tuesday. Half of the customers received an email with a 15% discount for TakeOff Tuesday, and half received a normal email or nothing at all (unsure about this).
+The data for this model was collected in a 50/50 randomized control test for 20,000 customers on a single day. Half of the customers received an email with a 15% discount for TakeOff Tuesday, and half received a normal email or nothing at all (unsure about this).
 
 ### Balance Check
 *[SMD table across features]*
-We balanced our test on 6 features: RFM, email engagement, customer tenture, and loyalty status.
+We balanced our test on 6 features: RFM, email engagement, customer tenture, and loyalty status. We are looking for below 0.10, and all of these features are well balanced.
                               smd         result
 tenure_months            0.003609  well balanced
 bookings_last_12mo       0.014332  well balanced
@@ -31,8 +31,14 @@ email_engagement_score   0.000303  well balanced
 ### Feature List
 *[Final feature set used for modeling]*
 We used these 6 features for our uplift model (7 if you break loyalty status out into binary variables and drop one).
-'tenure_months', 'loyalty_tier_silver', 'loyalty_tier_gold', 'bookings_last_12mo', 
-        'days_since_last_booking', 'avg_fare_last_year', 'email_engagement_score'
+- tenure_months
+- loyalty_tier_silver
+- loyalty_tier_gold
+- bookings_last_12mo
+- days_since_last_booking
+- avg_fare_last_year
+- email_engagement_score
+
 ---
 
 ## EDA
@@ -86,12 +92,15 @@ Policy learning — The last step, where all that analysis turns into an actual 
 
 ### Implementation Notes / Gotchas
 *[Known propensity → array shape requirement, UT predict() output shape, ConvergenceWarning fix, CausalML internal ChainedAssignmentError]*
+Here are a few modeling issues that caught me up while I was training:
+- 
 
 ---
 
 ## Validation
 
 ### Track 1 — No Ground Truth (production-realistic; basis for results.md)
+I ran 5 validation techniques, just to understand how each of them could help determine the winning model.
 - Qini Score
 - Value-Based Backtest (IPW-corrected)
 - Transformed-Outcome Proxy (MSE / correlation)
@@ -99,11 +108,11 @@ Policy learning — The last step, where all that analysis turns into an actual 
 - Face Validity
 
 ### Track 2 — Private Ground Truth (synthetic data only, personal learning)
-- PEHE vs. true CATE
-- Predicted vs. true segment agreement
+I have the true segments, but did not do any validation on them, as I want this to be a 100% no ground truth project.
 
 ### Model Leaderboard
 *[Table: all 8 methods × all metrics]*
+- need to create this one!
 
 ---
 
@@ -124,6 +133,7 @@ We are going to use the value-based backtest to determine the customer list for 
 ## Policy Learning
 
 *[Revenue-based causal forest → reward matrix → PolicyTree]*
+need to create this as well
 
 *[Policy tree plot]*
 
@@ -134,20 +144,26 @@ We are going to use the value-based backtest to determine the customer list for 
 ## Limitations & Assumptions
 
 *[Campaign-specificity — not generalizable across coupon value/channel without redesign]*
+This model is specific to 15% off via email
 
 *[Single-snapshot design can't observe cross-campaign habit formation]*
+We cannot use this one to predict from other types of campaigns.
 
 *[Segment boundaries reflect a continuous effect, not discrete truths]*
+Customers are constnatly moving segmetns
 
 ---
 
 ## Future Work
 
 *[Multi-campaign pooling with proper factorial design]*
+Hold out percentages of received vs not received.
 
 *[Dose-response / multi-valued treatment CATE]*
+Don't know what this is
 
 *[Permanent holdout for ongoing decay monitoring]*
+We will old out a blah
 
 ---
 

@@ -16,12 +16,12 @@ Hi Alex, please read through my findings below and send over your thoughts.
 
 Your concern on the TakeOff Tuesday Flash Sale Discount Code is very real! After running some numbers, we found four distinct groups of customers: 
 
-1) Sure Things - customers who are likely purchase regardless of promo
-2) Lost Causes - customers who are not likely to purchase regardless of promo
-3) Sleeping Dogs - customers who are less likely to purchase given a promo
-4) Persuadables - customers who are more likely to purchase given a promo
+1) Sure Things - customers likely purchase regardless of promo
+2) Lost Causes - customers not likely to purchase regardless of promo
+3) Sleeping Dogs - customers less likely to purchase given a promo
+4) Persuadables - customers more likely to purchase given a promo
 
-This final group is the one we were looking for, but each group can tell us something about their behavior around discounts. We should develop strategies for each of these customers segments and monitor them over time for behavior changes.
+This final group is the one we were looking for, but each group can tell us something about their behavior around discounts. We should develop strategies for each of these segments and monitor them over time for behavior changes.
 
 ## TL;DR
 To fully maximize net revenue, we recommend sending the TakeOff Tuesday Flash Sale Discount Code to the list of customers generated from the model, which is around 94% of the population. The net revenue by sending the promotional discount to the model's recommended list of customers is $983,540, which is up $65,568 from sending to everyone.
@@ -30,7 +30,7 @@ To fully maximize net revenue, we recommend sending the TakeOff Tuesday Flash Sa
 
 ## Background
 Quick reminder on the original campaign:
-The 50/50 campaign we ran for promo was sent via email to 10,000 customers with a 10,000 customer holdout group. We made sure the groups were equal on RFM metrics, email engagement, and loyalty tier so those factors would not interfere with the effect of the promotion. The TakeOff Tuesday Flash Sale was a 15% discount on flight bookings where we saw 25.7% conversion from the discount group, and 20.9% conversion from the control group. That's 22.9% increase in booking rate (4.8pp increase). The actual cost of the campaign from discounts was $78k and the incremental revenue was $21k, which accounts for the cost. These actual numbers will differ from the remainder of the numbers in this report as we only sent the promo to half of the customer list, and the model assumes we are including the other half as well (projecting to send to the full 20k).
+The 50/50 campaign we ran for promo was sent via email to 10,000 customers with a 10,000 customer holdout group. We made sure the groups were equal on RFM metrics, email engagement, and loyalty tier so those factors would not interfere with the effect of the promotion. The TakeOff Tuesday Flash Sale was a 15% discount on flight bookings where we saw 25.7% conversion from the discount group, and 20.9% conversion from the control group. That's 22.9% increase in booking rate (4.8pp increase). The actual cost of the campaign from discounts was $78k and the incremental revenue was $5k, which accounts for the cost. These actual numbers will differ from the remainder of the numbers in this report as we only sent the promo to half of the customer list, and the model assumes we are including the other half as well (projecting to send to the full 20k).
 
 ---
 
@@ -54,7 +54,7 @@ Yes, we are giving away around $85k of discounts to the Sure Things - customers 
 
 To fully understand whether we are training our best customers to expect discounts, we will have to measure their change in behavior over time. Once we have another campaign, we will see whether our sure-things are moving into persuadable territory. My recommendation is to keep a small holdout group (10%) for each of these flash sales so we can monitor our customers' statuses and whether they are migrating into other segments.
 
-But I would like to answer your question with the data we have. Without LTV, Gold Loyalty Tier is a good proxy for best customers. The customers who respond well to discounts are persuadables, who are around 10% of our customer base. This number drops to less than 1% in our Gold Tier, so given this data, our best customers are not expecting discounts at the moment, but we will keep an eye on this down the road.
+But I would like to answer your question with the data we have. Without LTV, Gold Loyalty Tier is a good proxy for best customers. The customers who respond well to discounts are persuadables, who are around 10% of our customer base. This number drops to less than 1% in our Gold Tier, so given this data, our best customers are not persuaded by discounts at the moment, but we will keep an eye on this down the road.
 
 ### 3. Who should actually get the discount?
 
@@ -77,15 +77,15 @@ This table is our value decomposition and our revenue per customer for each segm
 
 ## Financial Impact Summary
 
-This financial impact summary shows the most valuable table we have and shows the net revenue of sending to everyone, sending to no one, sending to persuadables, and sending to our model recommendation. There are two model recommendations at the bottom, and the value backtest wins since it's based on maximizing net revenue.
+This financial impact summary is the most valuable table we have and shows the net revenue of sending to everyone, sending to no one, sending to persuadables, and sending to our model recommendation. There are two model recommendations at the bottom, and the value backtest scored higher than the CF recommendation, but they are within noise of each other.
 
 | Scenario                           |   Customers sent | % of list   | Gross revenue   | Discount cost   | Net revenue   | Net vs. blanket   |
 |:-----------------------------------|-----------------:|:------------|:----------------|:----------------|:--------------|:------------------|
 | Send to everyone (blanket)         |           20,000 | 100%        | $1,079,968      | $161,995        | $917,973      | +$0               |
 | Send to no one                     |                0 | 0%          | $867,544        | $0              | $867,544      | -$50,429          |
-| Persuadables only (CI + breakeven) |            1,977 | 10%         | $889,070        | $10,966         | $878,104      | -$39,869          |
-| CF recommendation (top 82% by model confirmation)        |           16,310 | 82%         | $1,095,864      | $122,649        | $973,215      | +$55,243          |
-| Value backtest (top 94% by backtest)    |           18,800 | 94%         | $1,131,490      | $147,949        | $983,540      | +$65,568          |
+| Persuadables only                  |            1,977 | 10%         | $889,070        | $10,966         | $878,104      | -$39,869          |
+| All positive lift                  |           16,310 | 82%         | $1,095,864      | $122,649        | $973,215      | +$55,243          |
+| Final Model List                   |           18,800 | 94%         | $1,131,490      | $147,949        | $983,540      | +$65,568          |
 
 
 ---
@@ -98,7 +98,7 @@ Once again, I recommend you use our targeting list to send this upcoming TakeOff
 
 ## Monitoring & Next Steps
 
-Next steps, let's make sure that each campaign has a small 10% holdout group so we can continue to monitor our customers interactions with promotions and retrain this model when necessary. (Randomly send to half of the excluded 6% each campaign to check the cutoff.).
+Next steps, let's make sure that each campaign has a small 10% holdout group so we can continue to monitor our customers' interactions with promotions and retrain this model when necessary. Randomly send to half of the excluded 6% each campaign to check the cutoff.
 
 Before each campaign, we don't have to necessarily retrain the model, we can just rescore the customer population using our current model, until we see from the holdout group that the lift is declining, then we know the model is degrading and needs retraining.
 
