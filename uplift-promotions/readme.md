@@ -5,7 +5,7 @@
 An uplift modeling project built to answer a real business question: who should actually get a discount code, and who is just getting free margin? I created a fictional budget airline, built a realistic synthetic dataset from a 50/50 randomized promo test, and compared seven uplift methods to build a targeting list and estimate the net revenue impact versus blasting everyone.
 
 ## Business Context
-The initial ask came from Alex Torres, Director of CRM & Loyalty Marketing at BlueWing Air, ahead of Q3 planning. The full brief is in [explanations/stakeholder_request_email.md](explanations/stakeholder_request_email.md). Alex's questions, all answerable through uplift modeling:
+The initial ask came from Alex Torres, Director of CRM & Loyalty Marketing at BlueWing Air, ahead of Q3 planning. The full brief is in [explanations/stakeholder_request_email.md](explanations/email.md). Alex's questions, all answerable through uplift modeling:
 
 - Are we giving away margin to people who would book anyway?
 - Are we training our best customers to expect discounts?
@@ -46,14 +46,14 @@ Caveats: the 94% cutoff was chosen on the same holdout used to report results, s
 ## Repo Structure
 ```
 explanations/
-    stakeholder_request_email.md   # The original ask from Alex
+    email.md   # The original ask from Alex
     results.md                     # Findings and targeting recommendation
     technical_notes.md             # Technical notes on the models and validation
 data/
     bluewing_air_promo_uplift.csv  # Synthetic dataset (20,000 customers)
     targeting_list.csv             # Final send list from the causal forest
 notebooks/
-    uplift_promotions_model.ipynb  # Full model, validation, segments, results
+    uplift_model.ipynb  # Full model, validation, segments, results
 outputs/
     # Any png or output from the model
 ```
