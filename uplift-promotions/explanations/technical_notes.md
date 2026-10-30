@@ -87,7 +87,7 @@ T-learner: Two models, one model for the treatment and one for the control.Score
 X-learner: The same as the T-Learner, but uses a second stage model that imputes individual treatment effects and reweights by propensity. This one works well with unbalanced groups, which we don't struggle with so it may be overkill.
 R-learner: Removes the effect of the features from both outcome and treatment, then regresses the leftover outcome on the leftover treatment. Uses the known 0.5 propensity.
 Doubly Robust learner: Combines an outcome model with propensity weighting. It stays accurate if either piece is right. Uses the known 0.5 propensity.
-Causal forest: Ensemble of trees  that splits on treatment effect heterogeneity directly instead of splitting on outcome & subtracting afterwrad.
+Causal forest: Ensemble of trees that splits on treatment effect heterogeneity directly instead of splitting on outcome & subtracting afterwrad.
 Uplift trees: Model that splits directly on treatment effect divergence instead of fitting outcome model & subtrating.
 Policy learning: Not estimating CATE, learns a depth-3 rule that maximizes expected revenue.
 
