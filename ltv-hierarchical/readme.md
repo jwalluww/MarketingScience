@@ -12,19 +12,19 @@ The initial ask came from Maya Torres, VP of Growth at Ridgeline Outfitters, ahe
 - What should we be willing to spend to acquire or retain each segment?
 
 ## Why BG/NBD + Gamma-Gamma
-Ridgeline is a non-contractual, non-subscription DTC business — customers buy whenever they want, with no visible cancellation event when they stop. That rules out survival/churn models built for subscriptions and calls for a model designed specifically for silent churn: BG/NBD estimates purchase frequency and dropout probability from transaction timing alone, and Gamma-Gamma layers in expected spend per transaction. Going Bayesian over an ML regression approach was driven by two things: Maya explicitly asked for confidence ranges, not point estimates, and the primary signal driving LTV here is RFM-based, which plays to BG/NBD's strengths rather than an ML model's.
+Ridgeline is a non-contractual, non-subscription DTC business. Customers buy whenever they want, with no visible cancellation event when they stop. That rules out survival/churn models built for subscriptions and calls for a model designed specifically for silent churn: BG/NBD estimates purchase frequency and dropout probability from transaction timing alone, and Gamma-Gamma layers in expected spend per transaction. Going Bayesian over an ML regression approach was driven by two things: Maya explicitly asked for confidence ranges, not point estimates, and the primary signal driving LTV here is RFM-based, which plays to BG/NBD's strengths rather than an ML model's.
 
 ## Key Findings
 Full findings and the response to Maya are in [explanations/results.md](explanations/results.md). Summary:
 
-- Customers split into four LTV tiers ranging from $3.97 to $17,978 in projected 12-month value — a roughly 400x spread between top and bottom quartile
-- Top two tiers (50% of customers) justify the current $60 CAC with substantial headroom; bottom two tiers do not
+- Customers split into four LTV tiers ranging from $3.97 to $17,978 in projected 12-month value, a roughly 400x spread between top and bottom quartile
+- Top two tiers (50% of customers) justify the current $60 CAC with substantial headroom, bottom two tiers do not
 - Elite tier (top 25%) is driven primarily by purchase frequency (10.6 repeat orders/year); High tier is more balanced between frequency and order value, with real room to grow purchase frequency through retention
-- Holdout validation showed a modest optimistic bias (+0.095 purchases/customer) — conservative (lower-bound) LTV estimates are recommended for setting CAC thresholds
+- Holdout validation showed a modest optimistic bias (+0.095 purchases/customer), conservative (lower-bound) LTV estimates are recommended for setting CAC thresholds
 - LTV should be tracked as a long-term indicator of sustained marketing strategy, not a short-term campaign KPI
 
 ## Modeling Notes
-The ideal path was `lifetimes`' MLE-based BetaGeoFitter — fast, simple syntax. In practice, the heavy one-time-purchaser population (46% of customers) created a degenerate likelihood surface: the optimizer collapsed the dropout parameters to zero regardless of penalizer or initial values, effectively claiming no one ever churns. After diagnosing this as structural rather than a tuning problem, I switched to PyMC-Marketing, where priors act as guardrails against parameter collapse. The Gamma-Gamma fit then hit its own non-identifiability issue — q and v blew up into the trillions at raw dollar scale — resolved by scaling monetary values and applying tighter, domain-informed priors. Both obstacles, the diagnosis, and the fixes are documented in the notebook and technical notes.
+The ideal path was `lifetimes`' MLE-based BetaGeoFitter. It's fast, simple syntax. In practice, the heavy one-time-purchaser population (46% of customers) created a degenerate likelihood surface: the optimizer collapsed the dropout parameters to zero regardless of penalizer or initial values, effectively claiming no one ever churns. After diagnosing this as structural rather than a tuning problem, I switched to PyMC-Marketing, where priors act as guardrails against parameter collapse. The Gamma-Gamma fit then hit its own non-identifiability issue, q and v blew up into the trillions at raw dollar scale, resolved by scaling monetary values and applying tighter, domain-informed priors. Both obstacles, the diagnosis, and the fixes are documented in the notebook and technical notes.
 
 ## Tech Stack
 - Python, PyMC-Marketing, PyMC, ArviZ

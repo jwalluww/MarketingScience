@@ -2,7 +2,7 @@
 **Justin Wall | Marketing Science Portfolio**
 
 ## Overview
-A geo-based incrementality study built to answer a real business question: did this promotion actually drive new revenue, or would those customers have bought anyway? I created a fictional DTC company, built a realistic synthetic dataset with a known ground truth, and applied causal inference methods to estimate the true incremental lift. I then compared that against what a naive analysis would have reported.
+A geo-based incrementality test built to answer a real business question: did this promotion actually drive new revenue, or would those customers have bought anyway? I created a fictional DTC company, built a realistic synthetic dataset, and applied causal inference methods to estimate the true incremental lift. I then compared that against what a naive analysis would have reported.
 
 ## Business Context
 The ask came from Megan Hartley, VP of Marketing at Luma Candle Co., following a 5-week regional promotional campaign run across Southeast and Mid-Atlantic DMAs in March 2025. Channel was reporting strong numbers, but the exec team wanted to know how much of that lift was real before committing to a national rollout budget. The full brief is in [explanations/email.md](explanations/email.md). Three questions drove the analysis:
@@ -20,13 +20,12 @@ Full findings and the response to Megan are in [explanations/results.md](explana
 - The naive pre/post estimate reported by the channel team: **57.4%** or 28,483 / market / week
 - The DiD causal estimate (what the promo actually drove): **13.0%** or $5,911 / market / week
 - The bias gap what the naive read overcounted by: **35.4pp**
-- Ground truth baked into the synthetic dataset: **22.0%**
 - Recommendation: The promotion drove real, measurable lift, but warrants further testing ahead of a national rollout due to the non-randomized method for selecting control markets.
 
 ## Modeling Notes
 Four methods were attempted: naive pre/post, Difference-in-Differences (DiD), Synthetic Control, and CausalImpact.
 
-**DiD** (CausalPy/PyMC) is the primary causal estimate. One technical obstacle worth noting: the pooled DiD coefficient is an additive dollar figure divided by the pre-period average to get a percentage, which understates the true percentage lift when the pre-period average has grown due to trend. So the 9pp undersell of the lift was expected. The ATT in absolute dollars is the more reliable number, and the percentage should be interpreted carefully against the correct baseline. The Bayesian aspect gives us a credible interval to report to leadership for uncertainty quantification.
+**DiD** (CausalPy/PyMC) is the primary causal estimate. One technical obstacle worth noting: the pooled DiD coefficient is an additive dollar figure divided by the pre-period average to get a percentage, which understates the true percentage lift when the pre-period average has grown due to trend. So we suspect an undersell of the lift. The ATT in absolute dollars is the more reliable number, and the percentage should be interpreted carefully against the correct baseline. The Bayesian aspect gives us a credible interval to report to leadership for uncertainty quantification.
 
 **Synthetic Control** was implemented but produced degenerate results: the WeightedSumFitter with a flat Dirichlet(1,...,1) prior collapsed onto a single donor market (Columbus, OH, and St. Louis after Columbus was removed) regardless of which market was chosen or which aggregation method was used (sum vs. mean). This is a known limitation of unregularized weighted-sum approaches in correlated donor pools, and is not due to the data. Ridge-regularized SC or Synthetic DiD would be the correct fix, but we moved on due to time-constraints.
 
