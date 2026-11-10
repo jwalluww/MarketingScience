@@ -1,19 +1,36 @@
 # Price Elasticity Analysis: Findings & Pricing Recommendation
 **To:** Mara Morales, VP Commercial Strategy, Kettlerock Brewing Co.
 **From:** Data Science
-**Re:** What happens to demand and revenue when we change prices
+**Re:** Pricing Analysis
 
 ---
 
 Hi Mara, please read through the findings below and send over your thoughts.
 
-> Fill in: one or two lines. What this email covers and what you want back from her (e.g., which categories she is comfortable piloting a price change on).
+We have pricing recommendations, insights into our past year of pricing changes, and answers to your questions. In addition, we need a little bit of information from you before proceeding with next steps. Here is a summary of questions from your previous email:
 
-## The Short Version
+- Are we priced right across our portfolio?
+- What happens to sales volume when we change the price of SKUs?
+- What happened to Irongate IPA 6-pack last spring when we dropped the price $1.50?
+- Are customers switching to another product or going to competitors when prices change?
+- How does demand vary by season and promotions?
+- Which products are sensitive to price changes and how sensitive are they?
+
+I am recommending price changes across the entire portfolio of SKUs with one caveat: these price changes are tested cleanly before official implementation. The pricing model I built shows us how prices associate with revenue, but to officially learn if price changes directly cause changes in demand, we need a pricing experiment.
+
+Here is a TLDR of pricing recommendations across our portfolio of SKUs:
+
+5% price drop: 
+Hold price steady: 
+5% price increase:
+
+These recommendations vary considerably depending on the margin for each SKU.
 
 > Fill in: 3 to 4 sentences, the whole email in miniature. She may read only this section. Cover: which categories can take a price increase, which cannot, which we cannot call yet, and the one action you want her to take.
 
 ## What We Looked At
+
+We analyzed two years of weekly sales across 22 of our products in all 3 distribution regions. 
 
 > Fill in: 2 to 3 sentences. Two years of weekly sales, 22 products, 3 regions. The question is simple: when we change a price, how many fewer (or more) units do we sell, and does revenue go up or down? Do not use the word "elasticity" until the next section explains it.
 
@@ -56,6 +73,10 @@ Hi Mara, please read through the findings below and send over your thoughts.
 
 > Fill in: which categories we are sure about, which we are not, and why. Then next steps: a small controlled price test on the uncertain categories, rerun the model next quarter with the new data, and (optional) check whether raising one category's price shifts sales to others.
 
----
+Questions for you before taking next steps:
+Which categories are you comfortable testing?
 
-*Analysis conducted using a Hierarchical Bayesian demand model (PyMC), cross-checked against six other methods that largely agreed. Results reflect posterior means with 95% credible intervals. Based on two years of synthetic weekly data. A quarterly refresh and controlled price tests are recommended before large moves.*
+
+Thanks,
+Justin
+---
