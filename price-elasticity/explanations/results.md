@@ -30,11 +30,9 @@ These recommendations vary considerably depending on the margin for each SKU.
 
 ## What We Looked At
 
-We analyzed two years of weekly sales across 22 of our products in all 3 distribution regions. 
+We analyzed two years of weekly sales across 22 of our products in all 3 distribution regions. During this project we essentially looked at the past two years, and how many fewer units were sold when we increased price (or vice versa). If we saw units drop quickly when price was increased, then we know not to touch the price.
 
 > Fill in: 2 to 3 sentences. Two years of weekly sales, 22 products, 3 regions. The question is simple: when we change a price, how many fewer (or more) units do we sell, and does revenue go up or down? Do not use the word "elasticity" until the next section explains it.
-
-## How to Read "Price Sensitivity"
 
 > Fill in: one short paragraph plus one real example from your results. Plain-English definition: a 1% price increase leads to about X% fewer units. Then the one rule she needs: if volume drops faster than price rises (past -1), a price increase LOSES revenue; if it drops slower (between 0 and -1), a price increase GAINS revenue. Use one category as the worked example.
 
@@ -58,6 +56,8 @@ We analyzed two years of weekly sales across 22 of our products in all 3 distrib
 > Fill in: the recommendation. Suggested shape: one short paragraph per bucket (raise / hold / test first), each with the reason in business terms. Be honest that in most categories a price increase costs more volume than it earns, so "raise" may be a short list. Stay inside the 5 to 10% range we actually observed.
 
 ## What About Promotions?
+
+We split pricing promotions into two parts: the price cut and the promotion itself. In our data, the promoted SKUs sold better solely due to the price cut, and not the excitement of the promotion.
 
 > Fill in: in this data, promo weeks did not sell more beyond what the price cut itself explains. Translate that for her: what it means for how we use discounts, and what we would need to test (displays, features, ads) to find out if promos have any lift beyond the lower price. Careful with the wording, this is what the data shows, not a universal rule.
 
