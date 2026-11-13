@@ -69,19 +69,21 @@ We analyzed two years of weekly sales across 22 of our products in all 3 distrib
 
 ## What About Promotions?
 
-We split pricing promotions into two parts: the price cut and the promotion itself. In our data, the promoted SKUs sold better solely due to the price cut, and not the excitement of the promotion.
-
-> Fill in: in this data, promo weeks did not sell more beyond what the price cut itself explains. Translate that for her: what it means for how we use discounts, and what we would need to test (displays, features, ads) to find out if promos have any lift beyond the lower price. Careful with the wording, this is what the data shows, not a universal rule.
+We split pricing promotions into two parts: the price cut and the promotion itself. In our data, the promoted SKUs sold better solely due to the price cut, and not the excitement of the promotion. Let's continue to run promotions and geo-test a promotion with a price-cut vs a promotion with no price cut to verify where this finding is true.
 
 ## Two Categories We Can't Call Yet: Amber and THC
 
-> Fill in: Amber's price has trended down while its volume declined; THC's price and volume have both climbed. Price and trend move together, so the data cannot cleanly separate the two. Say that plainly, give our best range, and recommend a controlled price test instead of acting on the model.
+Over the past year we have been decreasing the price for Amber beer and the demand has continued to fall. The opposite has been true for THC, where we have seen increased demand with each price increase due to it's popularity. The pricing model I built has a hard time distinguishing price from trend, so we will need to run pricing tests specifically for these two before making any more permanent pricing adjustments. Amber may be moving to the point of diminishing profit, so we can also test pulling it from the shelves if the price gets too low.
 
 ## What-If Examples
 
 > Fill in: 2 to 3 scenarios she can picture, straight from the simulator. For example: +5% on IPA, +10% on Sour, -5% on Amber. For each, show units, revenue, and a plausible range.
 
 ## Confidence & Next Steps
+
+Here are my recommended next steps:
+1. Run controlled pricing test
+Productionalize the model and check back in quarterly
 
 > Fill in: which categories we are sure about, which we are not, and why. Then next steps: a small controlled price test on the uncertain categories, rerun the model next quarter with the new data, and (optional) check whether raising one category's price shifts sales to others.
 
