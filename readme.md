@@ -124,6 +124,28 @@ Synthetic retail transaction and browsing data across a large product catalog wi
 
 ---
 
+### 11. `subscription-retention-survival` Subscription Retention & Survival Analysis
+> *When do subscribers churn, why, and which kind of churn is it?*
+
+Synthetic subscription dataset with trials, monthly and annual plans, three billing platforms (iOS, Android, web), and realistic churn patterns: a cliff at trial end, a bump at first renewal, and a slow decay after that. Churn is split into voluntary cancels and involuntary failures (payment declines), since the two have different drivers and different fixes. Builds tenure-day retention curves and cohort retention heatmaps, then fits survival models to quantify what drives churn and how risk changes over a subscriber's lifetime. Closes with a retention-based LTV comparison against a naive average-lifetime estimate.
+
+**Methods:** Kaplan-Meier curves · cohort retention matrices · Cox proportional hazards (time-varying covariates) · competing risks (voluntary vs. involuntary) · shifted-beta-geometric (sBG) retention model in PyMC · churn cliff detection
+
+**Skills demonstrated:** Retention fact base construction · survival analysis · censoring and cohort handling · voluntary vs. involuntary churn sizing · subscription LTV
+
+---
+
+### 12. `subscription-state-transitions` Subscriber State-Transition & Growth Model
+> *How does the subscriber base flow between states, and which lever moves bookings the most?*
+
+Reuses the synthetic subscription data from project 11 to model the base as a system. Subscribers move between states: trial, active (auto-renew on), at-risk (auto-renew off), grace (payment failed), lapsed, and won back. Estimates monthly transition rates from event history, with Dirichlet priors so thin states borrow stability instead of producing noisy rates. Projects the base and bookings forward 12 months, then runs what-if scenarios such as "what happens to bookings if winback rises 2 points or payment recovery rises 5 points?" Tests whether a simple Markov assumption holds, or whether time-in-state needs a semi-Markov extension.
+
+**Methods:** Markov chain transition matrices · Bayesian estimation with Dirichlet priors · absorbing states and expected time-in-state · semi-Markov duration dependence · Monte Carlo scenario simulation · bookings forecasting
+
+**Skills demonstrated:** Growth modeling · state-based customer dynamics · sensitivity analysis on retention levers · connecting transition rates to revenue · scenario planning for non-technical stakeholders
+
+---
+
 ## Stack
 
 ```
