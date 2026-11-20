@@ -39,7 +39,7 @@ Simulates a regional promotional campaign across synthetic DMAs. Applies synthet
 ### 3. `clv-hierarchical` Customer Lifetime Value with Hierarchical Bayes
 > *Which customers are worth investing in long-term, and how much should we spend to acquire or retain them?*
 
-BG/NBD model for purchase frequency and Gamma-Gamma model for spend, fit on synthetic retail transaction data with realistic patterns: seasonal buyers, one-time purchasers, high-frequency loyalists. Outputs 12-month CLV distributions by customer segment with uncertainty intervals.
+BG/NBD model for purchase frequency and Gamma-Gamma model for spend, fit on synthetic retail transaction data with realistic patterns: seasonal buyers, one-time purchasers, high-frequency loyalists. Outputs 12-month CLV distributions by customer segment with uncertainty intervals. This is the **non-contractual** setting, where customers never formally "cancel" and churn has to be inferred from silence. See project 11 for the contractual counterpart.
 
 **Methods:** BG/NBD · Gamma-Gamma · PyMC · hierarchical priors · partial pooling across segments · posterior CLV distributions
 
@@ -124,25 +124,25 @@ Synthetic retail transaction and browsing data across a large product catalog wi
 
 ---
 
-### 11. `subscription-retention-survival` Subscription Retention & Survival Analysis
+### 11. `survival-retention` Subscription Retention & Survival Analysis
 > *When do subscribers churn, why, and which kind of churn is it?*
 
-Synthetic subscription dataset with trials, monthly and annual plans, three billing platforms (iOS, Android, web), and realistic churn patterns: a cliff at trial end, a bump at first renewal, and a slow decay after that. Churn is split into voluntary cancels and involuntary failures (payment declines), since the two have different drivers and different fixes. Builds tenure-day retention curves and cohort retention heatmaps, then fits survival models to quantify what drives churn and how risk changes over a subscriber's lifetime. Closes with a retention-based LTV comparison against a naive average-lifetime estimate.
+Synthetic subscription dataset with trials, monthly and annual plans, three billing platforms (iOS, Android, web), and realistic churn patterns: a cliff at trial end, a bump at first renewal, and a slow decay after that. This is the **contractual** setting, where cancellation is observed and the question is when and why it happens (project 3 covers the non-contractual counterpart). Churn is split into voluntary cancels and involuntary failures (payment declines), since the two have different drivers and different fixes, and both are modeled together as competing risks. Builds tenure-day retention curves and cohort retention heatmaps, then fits survival models to quantify what drives churn and how risk changes over a subscriber's lifetime. Closes with a retention-based LTV comparison against a naive average-lifetime estimate.
 
-**Methods:** Kaplan-Meier curves · cohort retention matrices · Cox proportional hazards (time-varying covariates) · competing risks (voluntary vs. involuntary) · shifted-beta-geometric (sBG) retention model in PyMC · churn cliff detection
+**Methods:** Kaplan-Meier curves · cohort retention matrices · Cox proportional hazards (time-varying covariates) · competing risks (voluntary vs. involuntary) · shifted-beta-geometric (sBG) retention model in PyMC · churn cliff detection (flagging tenure days where the hazard rises well above its rolling baseline, e.g. trial end and first renewal)
 
 **Skills demonstrated:** Retention fact base construction · survival analysis · censoring and cohort handling · voluntary vs. involuntary churn sizing · subscription LTV
 
 ---
 
-### 12. `subscription-state-transitions` Subscriber State-Transition & Growth Model
+### 12. `state-transitions` Subscriber State-Transition & Growth Model
 > *How does the subscriber base flow between states, and which lever moves bookings the most?*
 
-Reuses the synthetic subscription data from project 11 to model the base as a system. Subscribers move between states: trial, active (auto-renew on), at-risk (auto-renew off), grace (payment failed), lapsed, and won back. Estimates monthly transition rates from event history, with Dirichlet priors so thin states borrow stability instead of producing noisy rates. Projects the base and bookings forward 12 months, then runs what-if scenarios such as "what happens to bookings if winback rises 2 points or payment recovery rises 5 points?" Tests whether a simple Markov assumption holds, or whether time-in-state needs a semi-Markov extension.
+Uses its own synthetic subscription event history, built separately from project 11 so the event log can capture every state change (auto-renew toggles, payment failures, lapses, winbacks) at the detail this model needs. Subscribers move between subscription states: trial, active (auto-renew on), at-risk (auto-renew off), grace (payment failed), lapsed, and won back. A light engagement layer (engaged, casual, dormant) is crossed with these states, which makes some cells thin and gives the Dirichlet priors real work to do. Estimates monthly transition rates from event history, with Dirichlet priors so thin states borrow stability instead of producing noisy rates. Projects the base and bookings forward 12 months, then runs what-if scenarios such as "what happens to bookings if winback rises 2 points or payment recovery rises 5 points?" A tornado chart ranks each lever by its effect on 12-month bookings. The model is validated with a backtest: fit on the first 18 months, project the next 6, and compare against actuals. Tests whether a simple Markov assumption holds, or whether time-in-state needs a semi-Markov extension.
 
-**Methods:** Markov chain transition matrices · Bayesian estimation with Dirichlet priors · absorbing states and expected time-in-state · semi-Markov duration dependence · Monte Carlo scenario simulation · bookings forecasting
+**Methods:** Markov chain transition matrices · Bayesian estimation with Dirichlet priors · absorbing states and expected time-in-state · semi-Markov duration dependence · Monte Carlo scenario simulation · tornado sensitivity analysis · holdout backtest · bookings forecasting
 
-**Skills demonstrated:** Growth modeling · state-based customer dynamics · sensitivity analysis on retention levers · connecting transition rates to revenue · scenario planning for non-technical stakeholders
+**Skills demonstrated:** Growth modeling · state-based customer dynamics · sensitivity analysis on retention levers · model validation via backtesting · connecting transition rates to revenue · scenario planning for non-technical stakeholders
 
 ---
 
@@ -173,7 +173,9 @@ MarketingScience/
 ├── mta-attribution/
 ├── promo-cannibalization/
 ├── demand-forecasting/
-└── recommendation-personalization/
+├── recommendation-personalization/
+├── survival-retention/
+└── state-transitions/
 ```
 
 Each project folder contains its own README with the business question, modeling decisions, key findings, and limitations.
