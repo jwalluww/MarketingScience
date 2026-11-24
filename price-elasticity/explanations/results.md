@@ -7,7 +7,7 @@
 
 Hi Mara, please read through the findings below and send over your thoughts.
 
-We have pricing recommendations, insights into our past year of pricing changes, and answers to your pricing questions. In addition, we have next steps with your permission and input. Here is a summary of questions from your previous email with some quick inline responses.
+We have pricing recommendations, insights into our past year of pricing changes, and answers to your pricing questions. In addition, we have next steps with your input and approval. To start, here is a summary of questions from your previous email with some quick inline responses.
 
 **TLDR;**
 
@@ -66,6 +66,8 @@ Over the past year we have been decreasing the price for Amber beer and the dema
 **Price Simulator**
 
 > Fill in: 2 to 3 scenarios she can picture, straight from the simulator. For example: +5% on IPA, +10% on Sour, -5% on Amber. For each, show units, revenue, and a plausible range.
+
+To help you get a better picture of what revenue & units would look like with a change
 
 **Next Steps**
 
